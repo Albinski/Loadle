@@ -1,8 +1,8 @@
-# Loadle.energy
+# Loadle
 
 A daily puzzle: you're shown a country's typical weekday electricity demand curve and have six guesses to name the country. Wordle for grid nerds.
 
-**Play:** https://loadle.energy
+**Play:** https://loadle.app
 
 ## How it works
 
@@ -57,7 +57,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Contributions of new countries are very 
 
 ## AI declaration
 
-Loadle was designed and directed by github.com/Albinski. The game code, the processing scripts and some documentation were written with the assistance of Claude (Anthropic). No AI-generated data is used: every curve is computed from the published source listed above.
+Loadle was designed and directed by its maintainer (github.com/Albinski). The game code, the processing scripts and some of this documentation were written with the assistance of Claude (Anthropic). No AI-generated data is used: every curve is computed from the published source listed above.
 
 ## Licences
 

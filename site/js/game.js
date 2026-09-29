@@ -201,7 +201,7 @@
   // ---------- Result & share ----------
   function emojiLine() { return guesses.map(g => { if (isHit(g)) return "🟩"; const d = distKm(g, target); return d < 1500 ? "🟨" : d < 5000 ? "🟧" : "⬜"; }).join(""); }
   function shareText() {
-    return `Loadle #${dayNum + 1} ${guesses.some(isHit) ? guesses.length : "X"}/${MAX_GUESSES}\n📈 ${emojiLine()}\nhttps://loadle.energy`;
+    return `Loadle #${dayNum + 1} ${guesses.some(isHit) ? guesses.length : "X"}/${MAX_GUESSES}\n📈 ${emojiLine()}\nhttps://loadle.app`;
   }
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
   async function share() {
