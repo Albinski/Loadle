@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loadle.energy – guess the country from its electricity load curve</title>
+<meta name="description" content="A daily puzzle for grid nerds: see a country's typical 24-hour electricity demand curve and guess which country it is in six tries.">
+<link rel="canonical" href="https://loadle.energy/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Loadle.energy">
+<meta property="og:title" content="Loadle – guess the country from its load curve">
+<meta property="og:description" content="A new electricity demand curve every day. Six guesses. Which country is it?">
+<meta property="og:url" content="https://loadle.energy/">
+<meta property="og:image" content="https://loadle.energy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loadle – guess the country from its load curve">
+<meta name="twitter:description" content="A new electricity demand curve every day. Six guesses. Which country is it?">
+<meta name="twitter:image" content="https://loadle.energy/og.png">
+<meta name="theme-color" content="#002147">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <h1>Load<svg class="bolt" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 14h7l-1.5 8L20 10h-7l.5-8z" fill="var(--bolt)"/></svg><span class="le">le</span></h1>
+  <div class="icons">
+    <button class="icon-btn" id="helpBtn" aria-label="How to play"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4"/><circle cx="12" cy="17.5" r=".6" fill="currentColor"/></svg></button>
+    <button class="icon-btn" id="statsBtn" aria-label="Statistics"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></button>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+  </div>
+</div></div>
+<main>
+  <div class="meta" id="meta"></div>
+
+  <div class="chart-wrap">
+    <div id="chart"></div>
+    <div class="chart-cap" id="chartCap"></div>
+  </div>
+
+
+  <div class="guess-area" id="guessArea">
+    <input id="guessInput" type="text" placeholder="Guess a country" autocomplete="off" aria-label="Guess a country">
+    <div class="sugg" id="sugg" role="listbox"></div>
+  </div>
+
+  <div class="rows" id="rows"></div>
+
+  <ul class="hints" id="hints"></ul>
+
+  <div id="result"></div>
+
+  <footer>
+    <p>© 2026 <a href="https://github.com/Albinski">github.com/Albinski</a></p>
+  </footer>
+</main>
+
+<dialog id="helpDlg"><div class="modal">
+  <button class="icon-btn close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2>How to play</h2>
+  <p>Guess the country from the shape of its electricity demand.</p>
+  <p>The chart shows a typical weekday, hour by hour in the country's own local time, as a share of the day's peak. The label says whether it's a winter or a summer weekday, in that country's own seasons, so it won't tell you which hemisphere you're in.</p>
+  <p>You have six guesses. After each wrong guess you'll see how far away the answer is, and in which direction.</p>
+  <p>After your second guess a clue unlocks, and another after each guess that follows. Tap a clue to reveal it, or leave it hidden for the harder game. The first clue switches the chart to real gigawatts.</p>
+  <p>A new curve arrives every day.</p>
+</div></dialog>
+
+<dialog id="statsDlg"><div class="modal">
+  <button class="icon-btn close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2>Statistics</h2>
+  <div id="statsBody"></div>
+</div></dialog>
+
+<dialog id="settingsDlg"><div class="modal">
+  <button class="icon-btn close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2>Settings</h2>
+  <div class="setting"><div>Hard mode<small>No clues at all. Curve and compass only.</small></div><button class="switch" id="hardSwitch" role="switch" aria-checked="false" aria-label="Hard mode"></button></div>
+  <div class="setting"><div>Theme</div><select id="themeSel"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></div>
+</div></dialog>
+<div class="toast" id="toast"></div>
+<script src="js/world.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

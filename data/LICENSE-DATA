@@ -1,0 +1,9 @@
+The Loadle curve dataset (data/curves.csv and data/countries.csv) is licensed under
+the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "Loadle.energy curve dataset, github.com/Albinski, https://loadle.energy"
+
+Each curve is derived from a public source recorded in the `source`, `year` and
+`licence` columns of curves.csv. Only sources whose terms permit redistribution
+(CC BY 4.0, public domain, or an equivalent open licence) are included.
