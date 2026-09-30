@@ -199,7 +199,14 @@
   }
 
   // ---------- Result & share ----------
-  function emojiLine() { return guesses.map(g => { if (isHit(g)) return "🟩"; const d = distKm(g, target); return d < 1500 ? "🟨" : d < 5000 ? "🟧" : "⬜"; }).join(""); }
+  function emojiLine() {
+    return guesses.map(g => {
+      if (isHit(g)) return "🟩";
+      const d = distKm(g, target);
+      return d < 1000 ? "🟨" : d < 4000 ? "🟧" : "🟥";
+    }).join("");
+  }
+  
   function shareText() {
     const n = revealed.size;
     const clues = settings.hard ? " · hard mode" : n === 0 ? " · no clues" : ` · ${n} clue${n > 1 ? "s" : ""}`;
