@@ -201,7 +201,9 @@
   // ---------- Result & share ----------
   function emojiLine() { return guesses.map(g => { if (isHit(g)) return "🟩"; const d = distKm(g, target); return d < 1500 ? "🟨" : d < 5000 ? "🟧" : "⬜"; }).join(""); }
   function shareText() {
-    return `Loadle #${dayNum + 1} ${guesses.some(isHit) ? guesses.length : "X"}/${MAX_GUESSES}\n📈 ${emojiLine()}\nhttps://loadle.app`;
+    const n = revealed.size;
+    const clues = settings.hard ? " · hard mode" : n === 0 ? " · no clues" : ` · ${n} clue${n > 1 ? "s" : ""}`;
+    return `Loadle #${dayNum + 1} ${guesses.some(isHit) ? guesses.length : "X"}/${MAX_GUESSES}${clues}\n📈 ${emojiLine()}\nhttps://loadle.app`;
   }
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
   async function share() {
