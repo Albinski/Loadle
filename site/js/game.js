@@ -7,7 +7,7 @@
 
   // ---------- Config ----------
   const EPOCH = Date.UTC(2026, 8, 24);   // puzzle #1
-  const SEED = 20260924;                 // daily shuffle seed (move to the Worker before public launch)
+  const SEED = 20260924;                 // daily shuffle seed
   const MAX_GUESSES = 6;
   const MAX_DIST_KM = 20000;
   const HINT_UNLOCK_AFTER = 2;           // first clue unlocks after this many guesses
@@ -206,7 +206,7 @@
       return d < 1000 ? "🟨" : d < 4000 ? "🟧" : "🟥";
     }).join("");
   }
-  
+
   function shareText() {
     const n = revealed.size;
     const clues = settings.hard ? " · hard mode" : n === 0 ? " · no clues" : ` · ${n} clue${n > 1 ? "s" : ""}`;
@@ -264,7 +264,7 @@
     $("chartCap").innerHTML = `<span class="${tSeason === "summer" ? "sun" : ""}">${cap(tSeason)}</span> · Weekday`;
     drawChart(curve(), (revealed.has(0) || done) ? peakGW() : null);
     renderHints(); renderRows(); renderResult(); applySettings();
-    input.disabled = done; input.placeholder = done ? "Come back tomorrow for a new curve" : "Guess a country";
+    input.disabled = done; input.placeholder = done ? "Come back tomorrow for a new curve" : "Type a country name…";
   }
   render();
   if (!S.seenHelp) { openDlg("helpDlg"); S.seenHelp = true; saveState(S); }

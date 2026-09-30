@@ -64,10 +64,21 @@
 
   .guess-area { margin-top: 1rem; position: relative; }
   .guess-area input {
-    width: 100%; font: inherit; font-size: 1.05rem; padding: .7rem .9rem;
-    border: 2px solid var(--line); border-radius: 0; background: var(--surface); color: var(--ink); text-align: center;
+    width: 100%; font: inherit; font-size: 1.05rem; font-weight: 600; padding: .8rem .9rem;
+    border: 2px solid var(--bolt); border-radius: 0; text-align: center;
+    background: var(--ink); color: var(--bg);
+    box-shadow: 0 0 0 4px rgba(242,183,5,.25);
   }
-  .guess-area input:focus { outline: 2px solid var(--focus); outline-offset: 1px; border-color: transparent; }
+  .guess-area input::placeholder { color: var(--bg); opacity: .8; }
+  .guess-area input:focus { outline: 0; box-shadow: 0 0 0 4px rgba(242,183,5,.5); }
+  .guess-area input:disabled { background: var(--line); color: var(--muted); border-color: var(--line); box-shadow: none; }
+  .guess-area input:disabled::placeholder { color: var(--muted); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .guess-area input { background: #eaf0f8; color: #002147; }
+    :root:not([data-theme="light"]) .guess-area input::placeholder { color: #002147; }
+  }
+  :root[data-theme="dark"] .guess-area input { background: #eaf0f8; color: #002147; }
+  :root[data-theme="dark"] .guess-area input::placeholder { color: #002147; }
   .sugg { position: absolute; left: 0; right: 0; top: calc(100% + 4px); background: var(--surface);
     border: 2px solid var(--line); border-top: 0; overflow: hidden; z-index: 5; display: none; }
   .sugg button { display: block; width: 100%; text-align: left; padding: .55rem .9rem; border: 0; background: none; color: var(--ink); cursor: pointer; }
