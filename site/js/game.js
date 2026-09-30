@@ -215,7 +215,12 @@
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
   async function share() {
     const txt = shareText();
-    try { if (navigator.share) { await navigator.share({ text: txt }); return; } } catch (e) { }
+    try {
+      if (navigator.share) {
+        await navigator.share({ text: txt.replace("\nhttps://loadle.app", ""), url: "https://loadle.app" });
+        return;
+      }
+    } catch (e) { }
     try { await navigator.clipboard.writeText(txt); toast("Copied to clipboard"); }
     catch (e) { toast("Copy failed — select the text manually"); }
   }
